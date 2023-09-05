@@ -1,0 +1,14 @@
+stages:
+  - test
+
+sniff:
+  stage: test
+  image: remp/php-ci:8.0.20
+  tags:
+    - docker
+    - dennikn
+  script:
+    - php /usr/local/bin/composer update --no-progress
+    - make sniff
+    - make phpstan
+    - make latte-lint
