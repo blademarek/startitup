@@ -36,9 +36,14 @@ class ChangeBenefitFactory
 
         $activeBenefits = $this->benefitRepository->getActiveBenefits();
         $userSelectedBenefits = $this->usersRepository->find($userId)->related('user_benefit')->fetchPairs(null, 'benefit_id');
+        $disableConfig = $benefitCharges === 0;
+
+        if (!$disableConfig && !empty($userSelectedBenefits)) {
+            $disableConfig = $userSelectedBenefits;
+        }
 
         $form->addRadioList('benefits', $this->translator->translate('benefit.menu.benefit'), $activeBenefits)
-            ->setDisabled($benefitCharges ? $userSelectedBenefits : false);
+            ->setDisabled($disableConfig);
 
         if ($userId) {
             $form->addHidden('user_id', $userId);
