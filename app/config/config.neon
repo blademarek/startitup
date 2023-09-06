@@ -35,6 +35,7 @@ extensions:
 	- Crm\OnboardingModule\DI\OnboardingModuleExtension
 	- Crm\GiftsModule\DI\GiftsModuleExtension
 	- Crm\StripeModule\DI\StripeModuleExtension
+	- Crm\BenefitModule\DI\BenefitModuleExtension
 
 # parameters for extensions
 users:

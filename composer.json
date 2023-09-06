@@ -25,6 +25,7 @@
 	],
 	"require": {
 		"php": "^8.0",
+		"crm-local/benefit-module": "dev-main",
 		"remp/crm-admin-module": "^2.9",
 		"remp/crm-api-module": "^2.9",
 		"remp/crm-application-module": "^2.9",

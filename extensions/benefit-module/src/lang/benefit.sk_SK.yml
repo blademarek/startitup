@@ -1,0 +1,35 @@
+menu:
+    benefit: Benefity
+
+admin:
+    benefit:
+        new_benefit: Nový benefit
+        edit_benefit: Úprava benefitu
+        no_results: Nenašli sa žiadne benefity
+        title: Nadpis
+        code: Kód
+        valid_from: Aktívny od
+        valid_to: Aktívny do
+
+    actions:
+        show: Zobraz
+        edit: Uprav
+        submit: Ulož
+        back_to_list: späť na zoznam
+        back_to_detail: späť na záznam
+        created: Benefit uložený
+        updated: Benefit upravený
+
+    form:
+        title:
+            label: Nadpis*
+            required: Nadpis je povinný
+        code:
+            label: Kód*
+            required: Kód je povinný
+        valid_from:
+            label: Aktívny od*
+            required: Dátum aktivácie od je povinný
+        valid_to:
+            label: Aktívny do*
+            required: Dátum aktivácie do je povinný

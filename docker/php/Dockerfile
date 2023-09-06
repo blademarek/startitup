@@ -47,6 +47,16 @@ RUN pecl install imagick && docker-php-ext-enable imagick
 
 ADD log.conf /usr/local/etc/php-fpm.d/zz-log.conf
 
+# NANO
+
+RUN apt-get update && apt-get install nano
+
+# CUSTOM BASH PROFILE - MAREK PAVOL
+
+RUN echo "alias ll='ls -alG'" >> /etc/bash.bashrc
+RUN echo "alias ls='ls --color=auto'" >> /etc/bash.bashrc
+RUN echo "alias ..='cd ..'" >> /etc/bash.bashrc
+
 # COMPOSER
 
 RUN mkdir -p /composer && mkdir -p /composer/bin

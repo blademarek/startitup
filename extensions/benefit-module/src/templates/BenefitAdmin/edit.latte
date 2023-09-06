@@ -1,0 +1,20 @@
+{block #title}{_benefit.admin.benefit.edit_benefit} {$benefit->title}{/block}
+
+{block #content}
+
+<div class="row">
+    <div class="col-md-12">
+        <a href="{link BenefitAdmin:Show $benefit->id}"><i class="fa fa-angle-left"></i> {_benefit.admin.actions.back_to_detail}</a>
+        <div class="page-header">
+            <h1>
+                {_benefit.admin.benefit.edit_benefit}: <small>[{$benefit->id}]</small> {$benefit->title}
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        {control benefitForm}
+    </div>
+</div>

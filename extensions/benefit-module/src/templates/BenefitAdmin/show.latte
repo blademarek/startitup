@@ -1,0 +1,29 @@
+{block title}{$benefit->title|noescape}{/block}
+
+{block #content}
+
+<div class="row">
+    <div class="col-md-12">
+        <a n:href="default"><i class="fa fa-angle-left"></i> {_benefit.admin.action.back_to_list}</a>
+        <div class="page-header">
+            <h1>
+                <small>[{$benefit->id}]</small>
+                {$benefit->title|noescape}
+
+                <a n:href="edit $benefit->id" class="btn btn-primary btn-lg pull-right"><i class="fa fa-edit"></i> {_benefit.admin.benefit.edit_benefit}</a>
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+
+        <ul class="list-group">
+            <li class="list-group-item"><b>{_benefit.admin.benefit.title}:</b> {$benefit->title}</li>
+            <li class="list-group-item"><b>{_benefit.admin.benefit.code}:</b> <code>{$benefit->code}</code></li>
+            <li class="list-group-item"><b>{_benefit.admin.benefit.valid_from}:</b> {$benefit->valid_from | date}</li>
+            <li class="list-group-item"><b>{_benefit.admin.benefit.valid_to}:</b> {$benefit->valid_to | date}</li>
+        </ul>
+    </div>
+</div>

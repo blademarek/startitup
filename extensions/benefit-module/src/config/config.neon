@@ -1,0 +1,10 @@
+services:
+	moduleManager:
+		setup:
+			- addModule(Crm\BenefitModule\BenefitModule())
+
+	# Repositories
+	- Crm\BenefitModule\Repositories\BenefitRepository
+
+	# Forms
+	- Crm\BenefitModule\Forms\BenefitFactory
