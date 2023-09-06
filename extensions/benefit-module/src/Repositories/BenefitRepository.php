@@ -7,7 +7,6 @@ use DateTime;
 use Exception;
 use Nette\Database\Explorer;
 use Nette\Database\Table\ActiveRow;
-use Nette\Http\Url;
 
 class BenefitRepository extends Repository
 {
@@ -28,9 +27,9 @@ class BenefitRepository extends Repository
         string $validFrom,
         string $validTo
     ): ActiveRow {
+        // add benefit
         try {
-            /** @var ActiveRow $benfit */
-            $benfit = $this->insert([
+            $benefit = $this->insert([
                 'title' => $title,
                 'code' => $code,
                 'valid_from' => new DateTime($validFrom),
@@ -40,6 +39,25 @@ class BenefitRepository extends Repository
             throw new Exception($e->getMessage());
         }
 
-        return $benfit;
+        return $benefit;
+    }
+
+    public function getActiveBenefits(): array
+    {
+        // get filtered benefits that are active
+        $now = new DateTime();
+
+        return $this->getTable()
+            ->where(['valid_from <=' => $now])
+            ->where(['valid_to >=' => $now])
+            ->fetchPairs('id', 'title');
+    }
+
+    public function getBenefitsById(array $benefits): array
+    {
+        // get benefits by their id
+        return $this->getTable()
+            ->where('id', $benefits)
+            ->fetchAll();
     }
 }

@@ -13,17 +13,18 @@ class BenefitFactory
 {
     public function __construct(
         private Translator $translator,
-        private BenefitRepository $repository
+        private BenefitRepository $repository,
     ) {
     }
 
     public function create($benefitId): Form
     {
+        // create nette form
         $defaults = [];
 
         if (isset($benefitId)) {
-            $template = $this->repository->find($benefitId);
-            $defaults = $template->toArray();
+            $benefit = $this->repository->find($benefitId);
+            $defaults = $benefit->toArray();
         }
 
         $form = new Form();
@@ -42,12 +43,13 @@ class BenefitFactory
 
         $form->addText('valid_from', 'benefit.admin.form.valid_from.label')
             ->setHtmlAttribute('class', 'flatpickr')
+            ->setHtmlAttribute('flatpickr_datetime', '"1"')
             ->setRequired('benefit.admin.form.valid_from.required');
 
         $form->addText('valid_to', 'benefit.admin.form.valid_to.label')
             ->setHtmlAttribute('class', 'flatpickr')
+            ->setHtmlAttribute('flatpickr_datetime', '"1"')
             ->setRequired('benefit.admin.form.valid_to.required');
-
 
         if ($benefitId) {
             $form->addHidden('benefit_id', $benefitId);
@@ -69,6 +71,7 @@ class BenefitFactory
      */
     public function formSucceeded($form, $values): void
     {
+        // saving data after form validation
         $values = clone($values);
         foreach ($values as $i => $item) {
             if ($item instanceof ArrayHash) {
@@ -76,9 +79,9 @@ class BenefitFactory
             }
         }
 
-        if (isset($values['benefit_id'])) {
-            $benefitId = $values['benefit_id'];
-            unset($values['benefit_id']);
+        if (isset($values->benefit_id)) {
+            $benefitId = $values->benefit_id;
+            unset($values->benefit_id);
 
             $benefit = $this->repository->find($benefitId);
             $this->repository->update($benefit, $values);
@@ -87,13 +90,11 @@ class BenefitFactory
                 $this->onUpdate->__invoke($form, $benefit);
             };
         } else {
-            return;
-
             $benefit = $this->repository->add(
-                $values['title'],
-                $values['code'],
-                $values['valid_from'],
-                $values['valid_to'],
+                $values->title,
+                $values->code,
+                $values->valid_from,
+                $values->valid_to
             );
 
             $this->onCallback = function () use ($form, $benefit) {
@@ -104,7 +105,8 @@ class BenefitFactory
 
     public function callback(): void
     {
-        if ($this->onCallback) {
+        // invoking callback after changes are saved
+        if (isset($this->onCallback)) {
             $this->onCallback->__invoke();
         }
     }

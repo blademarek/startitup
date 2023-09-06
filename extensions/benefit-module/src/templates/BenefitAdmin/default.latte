@@ -25,8 +25,8 @@
                         <td class="text-muted">{$benefit->id}</td>
                         <td>{$benefit->title}</td>
                         <td>{$benefit->code}</td>
-                        <td>{$benefit->valid_from | date}</td>
-                        <td>{$benefit->valid_to | date}</td>
+                        <td>{$benefit->valid_from | date:'j. n. Y H:i'}</td>
+                        <td>{$benefit->valid_to | date:'j. n. Y H:i'}</td>
                         <td>
                             <p class="text-nowrap">
                                 <a n:href="show $benefit->id" class="btn btn-sm btn-info" title="{_benefit.admin.actions.show}"><i class="fa fa-eye"></i> </a>

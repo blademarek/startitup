@@ -19,6 +19,7 @@ class BenefitAdminPresenter extends AdminPresenter
 
     public function renderDefault(): void
     {
+        // render default admin template
         $benefits = $this->repository->getTable()->fetchAll();
 
         $this->template->benefits = $benefits;
@@ -30,6 +31,7 @@ class BenefitAdminPresenter extends AdminPresenter
      */
     public function renderShow($id): void
     {
+        // render show template of benefit
         $benefit = $this->repository->find($id);
         if (!$benefit) {
             throw new BadRequestException();
@@ -38,15 +40,12 @@ class BenefitAdminPresenter extends AdminPresenter
         $this->template->translator = $this->translator;
     }
 
-    public function renderNew()
-    {
-    }
-
     /**
      * @throws BadRequestException
      */
     public function renderEdit($id): void
     {
+        // render edit form
         $benefit = $this->repository->find($id);
         if (!$benefit) {
             throw new BadRequestException();
@@ -56,6 +55,7 @@ class BenefitAdminPresenter extends AdminPresenter
 
     public function createComponentBenefitForm(): Form
     {
+        // benefit form component initialization
         $id = null;
         if (isset($this->params['id'])) {
             $id = $this->params['id'];

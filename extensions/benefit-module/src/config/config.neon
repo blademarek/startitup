@@ -5,6 +5,18 @@ services:
 
 	# Repositories
 	- Crm\BenefitModule\Repositories\BenefitRepository
+	- Crm\BenefitModule\Repositories\UserBenefitRepository
+	- Crm\BenefitModule\Repositories\BenefitChargesRepository
 
 	# Forms
 	- Crm\BenefitModule\Forms\BenefitFactory
+	- Crm\BenefitModule\Forms\ChangeBenefitFactory
+
+	# event handlers
+	- Crm\BenefitModule\Events\BenefitNewSubscriptionEventHandler
+
+	# components
+	- Crm\BenefitModule\Components\UserBenefits\UserBenefits
+
+	# api
+	- Crm\BenefitModule\Api\BenefitsHandler

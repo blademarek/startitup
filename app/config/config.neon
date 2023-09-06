@@ -46,7 +46,7 @@ translation:
 	dirs:
 		- %appDir%/lang
 	locales:
-		default: en_US
+		default: sk_SK
 		whitelist: [en_US, sk_SK, cs_CZ]
 	localeResolvers:
 		- Contributte\Translation\LocalesResolvers\Parameter
@@ -96,3 +96,8 @@ database:
 		password: @environmentConfig::get('CRM_DB_PASS')
 		options:
 			lazy: yes
+
+services:
+	gatewayFactory:
+		setup:
+			- registerGateway(free, Crm\PaymentsModule\Gateways\Free)

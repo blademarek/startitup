@@ -1,0 +1,27 @@
+{block #title}{_benefit.menu.benefit}{/block}
+
+{block #content}
+
+<div class="page-header">
+	<h1>{_benefit.menu.benefit}</h1>
+	<p class="lead"></p>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div n:foreach="$selectedBenefits as $selectedBenefit">
+                <div>{_benefit.user.benefit}: {$selectedBenefit->title} - {$selectedBenefit->code}</div>
+        </div>
+    </div>
+</div>
+
+<div class="page-header">
+    <h3>{_benefit.user.choose_benefit}</h3>
+	<p class="lead"></p>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        {control changeBenefitForm}
+    </div>
+</div>

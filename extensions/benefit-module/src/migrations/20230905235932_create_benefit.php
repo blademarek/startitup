@@ -1,27 +1,27 @@
 <?php
 declare(strict_types=1);
 
+use Phinx\Db\Adapter\AdapterInterface;
 use Phinx\Migration\AbstractMigration;
 
 final class CreateBenefit extends AbstractMigration
 {
+    // benefit Phinx migration
     const TABLE = 'benefit';
 
     public function up(): void
     {
         if (!$this->hasTable(self::TABLE)) {
             $this->table(self::TABLE)
-                ->addColumn('title', 'string', ['null' => false])
-                ->addColumn('code', 'string', ['null' => false])
-                ->addColumn('image_url', 'string', ['null' => true])
-                ->addColumn('valid_from', 'timestamp', ['null' => false])
-                ->addColumn('valid_to', 'timestamp', ['null' => false])
+                ->addColumn('title', AdapterInterface::PHINX_TYPE_STRING, ['null' => false])
+                ->addColumn('code', AdapterInterface::PHINX_TYPE_STRING, ['null' => false])
+                ->addColumn('image', AdapterInterface::PHINX_TYPE_STRING, ['null' => true])
+                ->addColumn('valid_from', AdapterInterface::PHINX_TYPE_TIMESTAMP, ['null' => false])
+                ->addColumn('valid_to', AdapterInterface::PHINX_TYPE_TIMESTAMP, ['null' => false])
 
                 // unique indexes
                 ->addIndex('code', ['unique' => true])
 
-                // foreign keys
-//                ->addForeignKey('user_id', 'users', 'id', ['delete' => 'RESTRICT', 'update' => 'CASCADE'])
                 ->create();
         }
     }

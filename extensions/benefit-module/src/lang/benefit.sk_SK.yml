@@ -27,9 +27,22 @@ admin:
         code:
             label: Kód*
             required: Kód je povinný
+        image:
+            label: Fotka
         valid_from:
             label: Aktívny od*
             required: Dátum aktivácie od je povinný
         valid_to:
             label: Aktívny do*
             required: Dátum aktivácie do je povinný
+
+user:
+    choose_benefit: Výber benefitu
+    selected_benefits: Vybrané benefity
+    benefit: Benefit
+
+    actions:
+        benefit_saved: Benefit uložený
+
+component:
+    no_record_heading: Žádný záznam

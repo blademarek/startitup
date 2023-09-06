@@ -17,6 +17,7 @@ class BenefitModuleExtension extends CompilerExtension implements TranslationPro
 
     public function getTranslationResources(): array
     {
+        // loading lang
         return [__DIR__ . '/../lang/'];
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "crm-local/benefit-module",
-  "description": "Adds benefits",
+  "description": "Adding benefits",
   "type": "library",
   "minimum-stability": "dev",
   "autoload": {
